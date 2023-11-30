@@ -24,8 +24,8 @@ if __name__ == '__main__':
     musical_np = df.values
     musical_list = list(musical_np)
     musical_datas = []
-    for musical in musical_list:
-        converted_data = converter.convert_dataframe(musical)
+    for i, musical in enumerate(musical_list):
+        converted_data = converter.convert_dataframe(musical, i)
         if converted_data['is_invalid'] is True:
             continue
         insert_data = converted_data['data']

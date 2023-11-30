@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 
 
-def convert_dataframe(musical):
+def convert_dataframe(musical, idx):
     for idx, data in enumerate(musical):
         if isinstance(data, pd._libs.tslibs.nattype.NaTType):
             musical[idx] = None
@@ -17,6 +17,7 @@ def convert_dataframe(musical):
     insert_data['casting'] = musical[7]
     insert_data['place_name'] = musical[8]
     insert_data['poster_url'] = musical[10]
+    insert_data['origin_idx'] = idx
 
     is_invalid = validation(insert_data, is_already_exist)
 
