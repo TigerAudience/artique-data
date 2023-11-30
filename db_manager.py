@@ -45,7 +45,7 @@ def insert_to_musical(musical_info_list, run_mode):
 
 
 def generate_pk_info(musical_info, cursor):
-    pk = f"ARTIQUE/{musical_info['name']}@{musical_info['begin_date']}~{musical_info['end_date']}"
+    pk = musical_info['musical_pk']
     select_pk_query = f"SELECT * FROM musical WHERE id='{pk}'"
     cursor.execute(select_pk_query)
     select_pk = cursor.fetchall()

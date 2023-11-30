@@ -20,7 +20,7 @@ def convert_dataframe(musical, idx):
     insert_data['place_name'] = musical[8]
     insert_data['poster_url'] = musical[10]
     insert_data['origin_idx'] = idx
-    insert_data['musical_pk'] = create_pk()
+    insert_data['musical_pk'] = create_pk(musical)
 
     is_invalid = validation(insert_data, is_already_exist)
 
@@ -43,7 +43,10 @@ def validation(info, is_already_exist):
         res = True
     return res
 
-def create_pk():
+
+def create_pk(musical):
+    if musical[11] is not None:
+        return musical[11]
     today = date.today()
     formatted_date = today.strftime("%Y%m%d")
     # 랜덤 UUID 생성
