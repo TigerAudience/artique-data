@@ -24,6 +24,7 @@ if __name__ == '__main__':
     musical_np = df.values
     musical_list = list(musical_np)
     musical_datas = []
+    musical_pks_list = []
     for i, musical in enumerate(musical_list):
         converted_data = converter.convert_dataframe(musical, i)
         if converted_data['is_invalid'] is True:

@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from datetime import date
+import uuid
 
 
 def convert_dataframe(musical, idx):
@@ -18,6 +20,7 @@ def convert_dataframe(musical, idx):
     insert_data['place_name'] = musical[8]
     insert_data['poster_url'] = musical[10]
     insert_data['origin_idx'] = idx
+    insert_data['musical_pk'] = create_pk()
 
     is_invalid = validation(insert_data, is_already_exist)
 
@@ -39,3 +42,16 @@ def validation(info, is_already_exist):
     elif info['name'] is None:
         res = True
     return res
+
+def create_pk():
+    today = date.today()
+    formatted_date = today.strftime("%Y%m%d")
+    # 랜덤 UUID 생성
+    random_uuid = uuid.uuid4()
+    print(random_uuid)
+    # UUID의 첫 번째 부분 추출
+    first_part = str(random_uuid).split('-')[0]
+    print(first_part)
+
+    pk = f'ARTIQUE@{formatted_date}@{first_part}'
+    return pk
